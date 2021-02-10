@@ -1,8 +1,7 @@
 
 Cypress.Commands.add("bookASlot", () => {
-    cy.get('[data-test-id="logo"]').click()
-    const slotInfo = Cypress.$('#deliveryInfoPanel')
-    if (slotInfo.text().includes('Collection information')) {
+    // Only book slot if it's not already booked
+    if (!Cypress.$('.book-delivery__date').length) {
         cy.get('[data-test-id="book-delivery-button"]').should('exist').click()
         cy.get('#collectBookSlotBtn').click()
         cy.get('#mapEnabled ol li .process').eq(0).click()
@@ -10,8 +9,12 @@ Cypress.Commands.add("bookASlot", () => {
         cy.get('.slotPriceText > p').should('exist').then(($collectionText) => {
             expect($collectionText.text()).include('')
         })
-    } else {
-        cy.get('#trolleySubTotal').click()
-        cy.get('.trolleyOptions .checkoutBtn').click()
+        cy.get('.nextStep > .button').click()
     }
+})
+
+Cypress.Commands.add("goToCheckout", () => {
+    cy.get('[data-test-id="logo"]').click()
+    cy.get('#trolleySubTotal').click()
+    cy.get('.trolleyOptions .checkoutBtn').click()
 })

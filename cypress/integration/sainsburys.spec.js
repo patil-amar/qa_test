@@ -20,9 +20,7 @@ describe('Product checkout', () => {
         cy.acceptAllCookies()
         cy.login(this.userData.email, this.userData.password)
         cy.searchAndAddProduct('tomatoes', 'Napolina Chopped Tomatoes 400g')
-
-        //Currently only works if trolley is not booked
         cy.bookASlot()
-
+        cy.goToCheckout()
     })
 })
