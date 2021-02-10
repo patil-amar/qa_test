@@ -1,0 +1,8 @@
+{
+    "chromeWebSecurity": false,
+    "defaultCommandTimeout": 30000,
+    "pageLoadTimeout": 600000,
+    "baseUrl": "https://www.sainsburys.co.uk",
+    "viewportWidth": 1000,
+    "viewportHeight": 900
+}
